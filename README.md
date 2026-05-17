@@ -36,6 +36,6 @@ Results are hold in a pre-allocated vector (in-place calculations):
 
 ```julia
 results = Vector{Float64}(undef, 3)
-parmap(x -> x^2, [1, 2, 3], results)
+parmap!(x -> x^2, [1, 2, 3], results)
 ```
 
