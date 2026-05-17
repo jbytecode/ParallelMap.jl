@@ -35,7 +35,7 @@ function parmap(f::F, xs::AbstractVector) where F <: Function
     N == 0 && return []
     typ = Core.Compiler.return_type(f, Tuple{eltype(xs)})
     results = Vector{typ}(undef, N)
-    Threads.@threads for i in 1:N
+    @inbounds Threads.@threads for i in 1:N
         results[i] = f(xs[i])
     end
     return results
