@@ -2,7 +2,8 @@ using Test
 using ParallelMap
 using Base.Threads 
 
-@testset "Number of Threads" begin 
+# This is not a test, just warning the user if they are running with only one thread.
+begin 
 	if Threads.nthreads() < 2
 		@warn "***** Single Thread Detected *****"
 		@warn "Only one thread detected. The test results are still correct but the performance benefits of parallel execution won't be evident. Consider running with multiple threads for a more comprehensive test."
