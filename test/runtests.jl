@@ -1,5 +1,15 @@
 using Test 
 using ParallelMap
+using Base.Threads 
+
+@testset "Number of Threads" begin 
+	if Threads.nthreads() < 2
+		@warn "***** Single Thread Detected *****"
+		@warn "Only one thread detected. The test results are still correct but the performance benefits of parallel execution won't be evident. Consider running with multiple threads for a more comprehensive test."
+	else
+		@info "Running tests with $(Threads.nthreads()) threads."
+	end
+end 
 
 @testset "Standart map" begin 
     @test map(x -> x^2, [1, 2, 3]) == [1, 4, 9]

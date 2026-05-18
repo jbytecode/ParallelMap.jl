@@ -71,7 +71,7 @@ parmap!(x -> x^2, [1, 2, 3], results)
 println(results)  # Output: [1.0, 4.0, 9.0]
 ``` 
 """
-function parmap!(f::F, xs::AbstractVector, results::Vector) where F <: Function
+function parmap!(f::F, xs::AbstractVector, results::AbstractVector) where F <: Function
     len = length(xs) 
     len != length(results) && throw(ArgumentError("Length of results vector must match length of input vector"))
     len == 0 && return results 
